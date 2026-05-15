@@ -5,7 +5,7 @@
 <h1 align="center">Face Tracker Pro</h1>
 
 <p align="center">
-  <em>Real-time face tracking & analysis · 478 landmarks · tactical dashboard</em>
+  <em>Real-time face tracking & analysis - 478 landmarks - tactical dashboard</em>
 </p>
 
 <p align="center">
@@ -20,10 +20,10 @@ It automatically uses whichever MediaPipe Python API is available on your system
 
 | Backend | Pip package | Python | Model file |
 |---|---|---|---|
-| **Tasks API** — `FaceLandmarker` (default, recommended) | `mediapipe` 0.10.30+ / community 3.13 builds | 3.10 – 3.13 | `face_landmarker.task` (auto-downloaded once, ~5 MB, cached at `~/.facetrack/`) |
-| **Solutions API** — `FaceMesh` (legacy fallback) | `mediapipe` 0.10.0 – 0.10.14 | 3.10 – 3.12 | embedded in package |
+| **Tasks API**  -  `FaceLandmarker` (default, recommended) | `mediapipe` 0.10.30+ / community 3.13 builds | 3.10 - 3.13 | `face_landmarker.task` (auto-downloaded once, ~5 MB, cached at `~/.facetrack/`) |
+| **Solutions API**  -  `FaceMesh` (legacy fallback) | `mediapipe` 0.10.0 - 0.10.14 | 3.10 - 3.12 | embedded in package |
 
-You don't have to choose — the app auto-detects which one your `mediapipe` install supports.
+You don't have to choose  -  the app auto-detects which one your `mediapipe` install supports.
 
 ## Features
 
@@ -41,30 +41,30 @@ You don't have to choose — the app auto-detects which one your `mediapipe` ins
 - **FPS** counter
 - **Faces detected** counter
 - **Blink counter** (EAR-based) + **blinks per minute**
-- **Smile** intensity (0–100%)
+- **Smile** intensity (0-100%)
 - **Mouth open** ratio
 - **Eyebrow raise** (signed: raised vs furrowed)
 - **Face symmetry** score
 - **Distance from camera** (in cm, from interocular pixel width)
-- **Head pose** — pitch / yaw / roll dials
-- **Gaze direction** — radial widget + label (Up / Down / Left / Right / Center)
+- **Head pose**  -  pitch / yaw / roll dials
+- **Gaze direction**  -  radial widget + label (Up / Down / Left / Right / Center)
 - **Face shape** classification: Oval, Round, Square, Heart, Diamond, Oblong, Triangle (with live probability bars)
 - **Emotion** heuristic: Neutral, Happy, Surprised, Sad, Angry, Focused
-- **EAR sparkline** — rolling eye-openness chart
+- **EAR sparkline**  -  rolling eye-openness chart
 - Live status pills (blinking now / smiling / mouth open / face detected)
 
 ### Filters
 - None / Cartoon / Sketch / Edge / Sepia / Cool / Warm / Thermal
 
 ### Utility
-- Snapshot capture (PNG → `~/FaceTrackerSnapshots/`)
-- Video recording (MP4 → `~/FaceTrackerSnapshots/`)
+- Snapshot capture (PNG -> `~/FaceTrackerSnapshots/`)
+- Video recording (MP4 -> `~/FaceTrackerSnapshots/`)
 - Mirror toggle
 - Pause / resume
 - Camera switcher (prev / next)
 - Calibrate baselines (recenters smile / eyebrow detection on neutral expression)
 - Reset blink counter
-- Hotkeys: `Q` quit · `S` snapshot · `R` record · `Space` pause
+- Hotkeys: `Q` quit - `S` snapshot - `R` record - `Space` pause
 
 ### UI / animation polish
 - Dark theme with cyan / purple accents
@@ -80,7 +80,7 @@ You don't have to choose — the app auto-detects which one your `mediapipe` ins
 ### Robustness / boot
 - **Dependency checker** (`facetrack/bootstrap.py`) runs on every launch, also usable as a CLI: `python -m facetrack.bootstrap --diagnose`
 - Preflight: refuses to start if `tkinter` / `customtkinter` are missing (with a clear pip command)
-- Step-by-step boot: dependency check → camera probe → MediaPipe model load → analyzer init — each step reports its own progress and any failure points the user at a fix
+- Step-by-step boot: dependency check -> camera probe -> MediaPipe model load -> analyzer init  -  each step reports its own progress and any failure points the user at a fix
 - Build pipeline (`build.bat`) has 7 verification stages so you never end up with a broken `.exe`
 
 ---
@@ -88,7 +88,7 @@ You don't have to choose — the app auto-detects which one your `mediapipe` ins
 ## Quick start
 
 ### 1. Install Python 3.10 or newer
-MediaPipe works on Python 3.10–3.13 on Windows. If `pip install mediapipe` fails because no wheel is published for your Python version yet, install Python 3.12 alongside it and use that to run this project (run `py -3.12 -m pip install -r requirements.txt`, then `py -3.12 main.py`).
+MediaPipe works on Python 3.10-3.13 on Windows. If `pip install mediapipe` fails because no wheel is published for your Python version yet, install Python 3.12 alongside it and use that to run this project (run `py -3.12 -m pip install -r requirements.txt`, then `py -3.12 main.py`).
 
 ### 2. Install dependencies
 ```powershell
@@ -101,15 +101,15 @@ python -m pip install -r requirements.txt
 python main.py
 ```
 
-That's it — your webcam light should come on and the dashboard should populate within a second or two.
+That's it  -  your webcam light should come on and the dashboard should populate within a second or two.
 
 ---
 
 ## How to turn it into a .exe
 
-You have two options. **Option A is the one-click route** — just double-click `build.bat`.
+You have two options. **Option A is the one-click route**  -  just double-click `build.bat`.
 
-### Option A — one-click build (recommended)
+### Option A  -  one-click build (recommended)
 
 In the project root, double-click **`build.bat`**.
 It runs a **multi-stage verification pipeline** so you find out about problems *before* spending five minutes on PyInstaller:
@@ -134,7 +134,7 @@ It runs a **multi-stage verification pipeline** so you find out about problems *
 `build.bat` will *also* produce a proper Windows installer (`FaceTrackerPro_Setup_1.0.0.exe`) if **Inno Setup** is installed on your machine:
 
 1. Download Inno Setup (free) from <https://jrsoftware.org/isinfo.php>
-2. Install it with the defaults — `iscc.exe` ends up at `C:\Program Files (x86)\Inno Setup 6\ISCC.exe`
+2. Install it with the defaults  -  `iscc.exe` ends up at `C:\Program Files (x86)\Inno Setup 6\ISCC.exe`
 3. Re-run `.\build.bat`. Stage 8 will detect it automatically and compile `installer.iss`
 
 The resulting installer:
@@ -146,7 +146,7 @@ The resulting installer:
 - Real uninstaller registered in Add/Remove Programs
 - LZMA2 ultra compression so it's significantly smaller than the raw exe
 
-You don't need Inno Setup to use the app — the standalone `exe\FaceTrackerPro.exe` works on its own. The installer is just nicer to ship.
+You don't need Inno Setup to use the app  -  the standalone `exe\FaceTrackerPro.exe` works on its own. The installer is just nicer to ship.
 
 When it finishes, your standalone executable lives at:
 
@@ -154,11 +154,11 @@ When it finishes, your standalone executable lives at:
 d:\Projects\Face-Tracking\dist\FaceTrackerPro.exe
 ```
 
-Double-click that file to run the app — **no Python needed on the target machine**. You can copy that one exe to any Windows machine and it'll just work.
+Double-click that file to run the app  -  **no Python needed on the target machine**. You can copy that one exe to any Windows machine and it'll just work.
 
-> First launch of the exe takes ~5–10 seconds (PyInstaller unpacks the bundle to a temp folder). Subsequent launches are faster.
+> First launch of the exe takes ~5-10 seconds (PyInstaller unpacks the bundle to a temp folder). Subsequent launches are faster.
 
-### Option B — run PyInstaller manually
+### Option B  -  run PyInstaller manually
 
 If you want to tweak the build, run this from the project root:
 
@@ -210,11 +210,11 @@ Drop `--onefile` and use `--onedir` instead. You'll get a `dist\FaceTrackerPro\`
 ## Troubleshooting
 
 **`AttributeError: module 'mediapipe' has no attribute 'solutions'` or `No module named 'mediapipe.python'`**
-You're running a MediaPipe build that doesn't ship the Solutions API at all (e.g. the Python-3.13 community fork only exposes the Tasks API). This is now handled automatically: `facetrack/tracker.py` detects which API is available and uses it. If you still see this error, you probably have a corrupted MediaPipe install — fix with:
+You're running a MediaPipe build that doesn't ship the Solutions API at all (e.g. the Python-3.13 community fork only exposes the Tasks API). This is now handled automatically: `facetrack/tracker.py` detects which API is available and uses it. If you still see this error, you probably have a corrupted MediaPipe install  -  fix with:
 ```powershell
 python -m pip install --force-reinstall --no-cache-dir mediapipe
 ```
-Then re-run `python -m facetrack.bootstrap --diagnose` — it should report `MediaPipe API in use : tasks` (or `solutions`).
+Then re-run `python -m facetrack.bootstrap --diagnose`  -  it should report `MediaPipe API in use : tasks` (or `solutions`).
 
 **Run only the dependency check (no GUI)**
 ```powershell
@@ -235,19 +235,19 @@ PyInstaller used a Python that doesn't have `mediapipe` installed (very common w
 3. Re-run `build.bat`. It now verifies mediapipe is importable **before** building, so you'll catch this kind of problem immediately.
 
 **"Could not open camera #0"**
-Make sure no other app (Zoom, Teams, Discord, OBS) is holding the webcam. Use the `Next ▶` button in the sidebar to scan to camera #1 / #2 etc.
+Make sure no other app (Zoom, Teams, Discord, OBS) is holding the webcam. Use the `Next >` button in the sidebar to scan to camera #1 / #2 etc.
 
 **Black window / frozen UI on launch**
-Check the console for stack traces. The most common cause is a MediaPipe / numpy version mismatch — reinstall with `python -m pip install --force-reinstall -r requirements.txt`.
+Check the console for stack traces. The most common cause is a MediaPipe / numpy version mismatch  -  reinstall with `python -m pip install --force-reinstall -r requirements.txt`.
 
 **Blink count never goes up**
-The blink threshold is tuned for adults at typical webcam distance. If yours is off, edit `FaceAnalyzer(blink_threshold=0.21, ...)` in `facetrack/app.py` — lowering it makes blinks harder to register.
+The blink threshold is tuned for adults at typical webcam distance. If yours is off, edit `FaceAnalyzer(blink_threshold=0.21, ...)` in `facetrack/app.py`  -  lowering it makes blinks harder to register.
 
 **Face shape says "Oblong" on me but I'm clearly Oval**
 Press the **Calibrate Baselines** button while looking straight at the camera with a neutral expression. Lighting / angle / camera lens distortion all affect the geometric ratios that drive classification.
 
 **Antivirus flags the exe**
-PyInstaller exes sometimes false-positive on Windows Defender. This is a known issue with onefile builds — code-sign the exe if you intend to redistribute it, or use `--onedir`.
+PyInstaller exes sometimes false-positive on Windows Defender. This is a known issue with onefile builds  -  code-sign the exe if you intend to redistribute it, or use `--onedir`.
 
 ---
 
@@ -255,20 +255,20 @@ PyInstaller exes sometimes false-positive on Windows Defender. This is a known i
 
 ```
 Face-Tracking/
-├── main.py                 # Entry point - orchestrates splash + boot
-├── requirements.txt
-├── build.bat               # 7-stage exe builder w/ smart dep check
-├── README.md
-└── facetrack/
-    ├── __init__.py
-    ├── constants.py        # Landmark indices, colors, UI palette
-    ├── bootstrap.py        # Dependency checker (runtime + CLI)
-    ├── splash.py           # Animated loading screen
-    ├── model.py            # Find/download face_landmarker.task
-    ├── tracker.py          # Tasks-API + Solutions-API face tracker
-    ├── analyzer.py         # Geometry + metrics (shape, pose, blink, etc.)
-    ├── widgets.py          # Animated CustomTkinter widgets
-    └── app.py              # Main App class + GUI
++---- main.py                 # Entry point - orchestrates splash + boot
++---- requirements.txt
++---- build.bat               # 7-stage exe builder w/ smart dep check
++---- README.md
+\---- facetrack/
+    +---- __init__.py
+    +---- constants.py        # Landmark indices, colors, UI palette
+    +---- bootstrap.py        # Dependency checker (runtime + CLI)
+    +---- splash.py           # Animated loading screen
+    +---- model.py            # Find/download face_landmarker.task
+    +---- tracker.py          # Tasks-API + Solutions-API face tracker
+    +---- analyzer.py         # Geometry + metrics (shape, pose, blink, etc.)
+    +---- widgets.py          # Animated CustomTkinter widgets
+    \---- app.py              # Main App class + GUI
 ```
 
 ---
@@ -276,8 +276,8 @@ Face-Tracking/
 ## Notes & limitations
 
 - **Emotion** here is rule-based on facial geometry, not a trained CNN. It's good for fun but won't match a dedicated emotion model.
-- **Face shape** is a geometric classifier using face-length / cheek / jaw / forehead ratios — it's an opinion, not a diagnosis.
-- **Distance** assumes an average human interocular distance of 63 mm and a 650 px focal length — accuracy is ±15% depending on your webcam lens.
+- **Face shape** is a geometric classifier using face-length / cheek / jaw / forehead ratios  -  it's an opinion, not a diagnosis.
+- **Distance** assumes an average human interocular distance of 63 mm and a 650 px focal length  -  accuracy is +/-15% depending on your webcam lens.
 - **Gaze direction** uses iris-vs-eye-corner offset; it doesn't perform full screen-coordinate gaze tracking.
 
 Enjoy.

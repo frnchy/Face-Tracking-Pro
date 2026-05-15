@@ -629,11 +629,11 @@ class FaceTrackerApp:
                    command=self._calibrate).pack(fill="x", pady=2)
         IconButton(side, text="Reset blink counter",
                    command=self._reset_blinks).pack(fill="x", pady=2)
-        IconButton(side, text="Export metrics → JSON",
+        IconButton(side, text="Export metrics -> JSON",
                    command=self._export_json).pack(fill="x", pady=2)
-        IconButton(side, text="Save profile…",
+        IconButton(side, text="Save profile...",
                    command=self._save_profile).pack(fill="x", pady=2)
-        IconButton(side, text="Load profile…",
+        IconButton(side, text="Load profile...",
                    command=self._load_profile).pack(fill="x", pady=2)
         IconButton(side, text="Open snapshots folder",
                    command=self._open_snapshots).pack(fill="x", pady=2)
@@ -654,7 +654,7 @@ class FaceTrackerApp:
         self.video_frame.grid_columnconfigure(0, weight=1)
         self.video_label = tk.Label(
             self.video_frame, bg=C.UI_SURFACE, bd=0, highlightthickness=0,
-            text="ACQUIRING FEED…", fg=C.UI_TEXT_DIM,
+            text="ACQUIRING FEED...", fg=C.UI_TEXT_DIM,
             font=(C.FONT_MONO, 13),
         )
         self.video_label.grid(row=0, column=0, sticky="nsew", padx=6, pady=6)
@@ -665,13 +665,13 @@ class FaceTrackerApp:
         self.pill_face.pack(side="left", padx=(0, 6))
         self.pill_lock = StatPill(pills, "LOCK: STANDBY")
         self.pill_lock.pack(side="left", padx=6)
-        self.pill_blink = StatPill(pills, "BLINK: —")
+        self.pill_blink = StatPill(pills, "BLINK:  - ")
         self.pill_blink.pack(side="left", padx=6)
-        self.pill_smile = StatPill(pills, "SMILE: —")
+        self.pill_smile = StatPill(pills, "SMILE:  - ")
         self.pill_smile.pack(side="left", padx=6)
         self.pill_talk = StatPill(pills, "VOX: idle")
         self.pill_talk.pack(side="left", padx=6)
-        self.pill_yawn = StatPill(pills, "YAWN: —")
+        self.pill_yawn = StatPill(pills, "YAWN:  - ")
         self.pill_yawn.pack(side="left", padx=6)
 
     def _build_right_panel(self, parent) -> None:
@@ -780,7 +780,7 @@ class FaceTrackerApp:
         shape_card.grid(row=0, column=0, columnspan=2, sticky="ew",
                         padx=4, pady=4)
         self.shape_value = ctk.CTkLabel(
-            shape_card, text="—",
+            shape_card, text=" - ",
             text_color=C.UI_ACCENT_HI,
             font=ctk.CTkFont(family=C.FONT_SANS, size=20, weight="bold"),
         )
@@ -817,7 +817,7 @@ class FaceTrackerApp:
         em_card.grid(row=0, column=0, columnspan=2, sticky="ew",
                      padx=4, pady=4)
         self.emotion_value = ctk.CTkLabel(
-            em_card, text="—",
+            em_card, text=" - ",
             text_color=C.UI_ACCENT_HI,
             font=ctk.CTkFont(family=C.FONT_SANS, size=20, weight="bold"),
         )
@@ -886,11 +886,11 @@ class FaceTrackerApp:
         about.grid(row=4, column=0, columnspan=2,
                    sticky="ew", padx=4, pady=4)
         about_text = (
-            "  Face Tracker Pro · ops build\n"
-            "  478-point landmark tracking · MediaPipe Tasks · OpenCV · Tkinter\n"
-            "  Snapshots → ~/FaceTrackerSnapshots\n"
-            "  Profiles  → ~/.facetrack/profiles\n"
-            "  Built by frnchy · github.com/frnchy · 2026"
+            "  Face Tracker Pro - ops build\n"
+            "  478-point landmark tracking - MediaPipe Tasks - OpenCV - Tkinter\n"
+            "  Snapshots -> ~/FaceTrackerSnapshots\n"
+            "  Profiles  -> ~/.facetrack/profiles\n"
+            "  Built by frnchy - github.com/frnchy - 2026"
         )
         ctk.CTkLabel(
             about, text=about_text, anchor="w", justify="left",
@@ -904,11 +904,11 @@ class FaceTrackerApp:
         self.status = StatusStrip(self.root)
         self.status.grid(row=3, column=0, sticky="ew")
         self.status.add_left("status", "STANDBY")
-        self.status.add_left("backend", "backend: —")
+        self.status.add_left("backend", "backend:  - ")
         self.status.add_left("model", "model: face_landmarker_v2")
-        self.status.add_left("sig", "built by frnchy · 2026")
+        self.status.add_left("sig", "built by frnchy - 2026")
         self.status.add_right("latency", "0 ms")
-        self.status.add_right("res", "0×0")
+        self.status.add_right("res", "0x0")
         self.status.add_right("landmarks", "0 pts")
         self.status.add_right("rec", "")
         self.status.add_right("battery", "")
@@ -968,10 +968,10 @@ class FaceTrackerApp:
             f"Camera {self.cam_index}",
         )
         aw, ah = self.capture.actual_resolution
-        self.status.set("status", f"FEED ACQUIRED · {cam_name}")
-        self.status.set("res", f"{aw}×{ah}")
+        self.status.set("status", f"FEED ACQUIRED - {cam_name}")
+        self.status.set("res", f"{aw}x{ah}")
         if self.toasts is not None:
-            self.toasts.show(f"Connected to {cam_name} ({aw}×{ah})", kind="success")
+            self.toasts.show(f"Connected to {cam_name} ({aw}x{ah})", kind="success")
 
     def _toggle_pause(self) -> None:
         self.paused = not self.paused
@@ -988,7 +988,7 @@ class FaceTrackerApp:
             self.panel_btn.configure(text="Panel")
         else:
             self.right_panel.grid_remove()
-            self.panel_btn.configure(text="Panel ↑")
+            self.panel_btn.configure(text="Panel ^")
 
     def _on_always_on_top(self, on: bool) -> None:
         try:
@@ -1079,9 +1079,9 @@ class FaceTrackerApp:
         except Exception:
             pass
         if self.toasts:
-            label = f"Snapshot · {path.name}"
+            label = f"Snapshot - {path.name}"
             if reason:
-                label = f"Snapshot ({reason}) · {path.name}"
+                label = f"Snapshot ({reason}) - {path.name}"
             self.toasts.show(label, kind="success")
 
     def _toggle_recording(self) -> None:
@@ -1112,9 +1112,9 @@ class FaceTrackerApp:
         self._record_fps = rec_fps
         self.rec_btn.configure(text="Stop")
         self.rec_btn.set_active(True)
-        self.status.set("rec", f"● REC {rec_fps:.0f}fps")
+        self.status.set("rec", f"* REC {rec_fps:.0f}fps")
         if self.toasts:
-            self.toasts.show(f"Recording · {path.name} @ {rec_fps:.0f}fps",
+            self.toasts.show(f"Recording - {path.name} @ {rec_fps:.0f}fps",
                              kind="info")
 
     def _stop_recording(self) -> None:
@@ -1127,7 +1127,7 @@ class FaceTrackerApp:
         self.status.set("rec", "")
         if self.toasts and self._record_path:
             self.toasts.show(
-                f"Saved · {Path(self._record_path).name}", kind="success",
+                f"Saved - {Path(self._record_path).name}", kind="success",
             )
 
     def _save_replay(self) -> None:
@@ -1140,7 +1140,7 @@ class FaceTrackerApp:
         ok = self.replay.export_mp4(str(path))
         if self.toasts:
             if ok:
-                self.toasts.show(f"Replay saved · {path.name}", kind="success")
+                self.toasts.show(f"Replay saved - {path.name}", kind="success")
             else:
                 self.toasts.show("Failed to save replay", kind="error")
 
@@ -1159,7 +1159,7 @@ class FaceTrackerApp:
         self.bookmarks_widget.add(time.strftime("%H:%M:%S", time.localtime(ts)),
                                   label)
         if self.toasts:
-            self.toasts.show(f"Bookmark · {label}", kind="info")
+            self.toasts.show(f"Bookmark - {label}", kind="info")
 
     def _export_json(self) -> None:
         SNAPSHOTS_DIR.mkdir(parents=True, exist_ok=True)
@@ -1185,7 +1185,7 @@ class FaceTrackerApp:
         try:
             export_metrics_json(path, m, extras)
             if self.toasts:
-                self.toasts.show(f"Exported · {path.name}", kind="success")
+                self.toasts.show(f"Exported - {path.name}", kind="success")
         except Exception as e:
             if self.toasts:
                 self.toasts.show(f"Export failed: {e}", kind="error")
@@ -1224,7 +1224,7 @@ class FaceTrackerApp:
         try:
             path = prof.save()
             if self.toasts:
-                self.toasts.show(f"Profile saved · {path.name}", kind="success")
+                self.toasts.show(f"Profile saved - {path.name}", kind="success")
         except Exception as e:
             if self.toasts:
                 self.toasts.show(f"Save failed: {e}", kind="error")
@@ -1234,12 +1234,12 @@ class FaceTrackerApp:
         if not existing:
             if self.toasts:
                 self.toasts.show(
-                    "No profiles saved yet. Click 'Save profile…' first.",
+                    "No profiles saved yet. Click 'Save profile...' first.",
                     kind="warn",
                 )
             return
         default_name = existing[0]
-        prompt = f"Profile to load · available: {', '.join(existing[:6])}"
+        prompt = f"Profile to load - available: {', '.join(existing[:6])}"
         name = _ask_text(self.root, "Load profile", prompt, default=default_name)
         if not name:
             return
@@ -1272,7 +1272,7 @@ class FaceTrackerApp:
         self.analyzer._smile_baseline = prof.smile_baseline
         self.analyzer._eyebrow_baseline = prof.eyebrow_baseline
         if self.toasts:
-            self.toasts.show(f"Profile loaded · {prof.name}", kind="success")
+            self.toasts.show(f"Profile loaded - {prof.name}", kind="success")
 
     def _on_root_configure(self, e) -> None:
         if e.widget is not self.root:
@@ -1445,7 +1445,7 @@ class FaceTrackerApp:
 
             if (self.posture_alerts.get() and self.posture.should_warn()):
                 if self.toasts:
-                    self.toasts.show(f"Posture · {self.posture.state} "
+                    self.toasts.show(f"Posture - {self.posture.state} "
                                      f"({self.posture.detail})",
                                      kind="warn", duration_ms=3500)
 
@@ -1581,7 +1581,7 @@ class FaceTrackerApp:
             self._last_battery_check = time.time()
             pct, charging = battery_status()
             if pct is not None:
-                glyph = "⚡" if charging else "▮"
+                glyph = "[chg]" if charging else "[bat]"
                 self.status.set("battery", f"{glyph} {pct}%")
 
         self.frame_for_display = display_frame
@@ -1635,9 +1635,9 @@ class FaceTrackerApp:
                         cv2.FONT_HERSHEY_SIMPLEX, 0.40, C.COLOR_TEXT, 1, cv2.LINE_AA)
             cv2.putText(frame, f"RNG    {m.distance_cm:>4.0f}cm", (x + 130, y + 48),
                         cv2.FONT_HERSHEY_SIMPLEX, 0.40, C.COLOR_TEXT, 1, cv2.LINE_AA)
-            cv2.putText(frame, f"YAW    {m.yaw:+5.1f}°", (x + 130, y + 64),
+            cv2.putText(frame, f"YAW    {m.yaw:+5.1f}", (x + 130, y + 64),
                         cv2.FONT_HERSHEY_SIMPLEX, 0.40, C.COLOR_TEXT, 1, cv2.LINE_AA)
-            cv2.putText(frame, f"PITCH  {m.pitch:+5.1f}°", (x + 130, y + 80),
+            cv2.putText(frame, f"PITCH  {m.pitch:+5.1f}", (x + 130, y + 80),
                         cv2.FONT_HERSHEY_SIMPLEX, 0.40, C.COLOR_TEXT, 1, cv2.LINE_AA)
 
         if self.recording:
@@ -1692,13 +1692,13 @@ class FaceTrackerApp:
             self.gaze_radial.set_gaze(m.gaze_x, m.gaze_y, m.gaze_label)
             self.shape_probs.set_scores(m.shape_scores)
             self.shape_value.configure(
-                text=f"{m.face_shape}  ·  {m.face_shape_conf * 100:.0f}%")
+                text=f"{m.face_shape}  -  {m.face_shape_conf * 100:.0f}%")
         elif tab == "Expression":
             self.bar_smile.set_value(m.smile)
             self.bar_mouth.set_value(m.mouth_open)
             self.bar_brows.set_value(m.eyebrow_raise)
             self.emotion_value.configure(
-                text=f"{m.emotion}  ·  {m.emotion_conf * 100:.0f}%")
+                text=f"{m.emotion}  -  {m.emotion_conf * 100:.0f}%")
 
         self.pill_face.set_state(True, text="FACE: ACQUIRED")
         lock = m.stability > 0.6 and m.face_shape_conf > 0.25
@@ -1724,7 +1724,7 @@ class FaceTrackerApp:
                                f"{m.attention_s:.1f}s")
         self.session_table.set("Look-aways", str(m.look_away_count))
         self.session_table.set("Yawns", str(m.yawn_count))
-        self.session_table.set("Recording", "● live" if self.recording else "idle")
+        self.session_table.set("Recording", "* live" if self.recording else "idle")
 
         self.misc_table.set("Glasses",
                             "likely" if m.glasses_likely else "no signal")
@@ -1740,7 +1740,7 @@ class FaceTrackerApp:
                    else (C.UI_WARN if d_score < 0.7 else C.UI_BAD))
         self.badge_drowsy.set(
             d_label,
-            detail=f"score {d_score*100:.0f}%  ·  blinks/min {len(self.drowsiness._blink_times)}",
+            detail=f"score {d_score*100:.0f}%  -  blinks/min {len(self.drowsiness._blink_times)}",
             level=d_score, color=d_color,
         )
 
@@ -1763,18 +1763,18 @@ class FaceTrackerApp:
         self.bar_sym.set_value(0)
         self.bar_dist.set_value(0)
         self.bar_area.set_value(0)
-        self.gaze_radial.set_gaze(0, 0, "—")
+        self.gaze_radial.set_gaze(0, 0, " - ")
         self.pose_dial.set_values(0, 0, 0)
-        self.emotion_value.configure(text="—")
-        self.shape_value.configure(text="—")
+        self.emotion_value.configure(text=" - ")
+        self.shape_value.configure(text=" - ")
         self.pill_face.set_state(False, "FACE: NONE")
         self.pill_lock.set_state(False, "LOCK: STANDBY")
-        self.pill_blink.set_state(False, "BLINK: —")
-        self.pill_smile.set_state(False, "SMILE: —")
+        self.pill_blink.set_state(False, "BLINK:  - ")
+        self.pill_smile.set_state(False, "SMILE:  - ")
         self.pill_talk.set_state(False, "VOX: idle")
-        self.pill_yawn.set_state(False, "YAWN: —")
-        self.badge_drowsy.set("—", "no signal", level=0.0, color=C.UI_TEXT_DIM)
-        self.badge_posture.set("—", "no face detected",
+        self.pill_yawn.set_state(False, "YAWN:  - ")
+        self.badge_drowsy.set(" - ", "no signal", level=0.0, color=C.UI_TEXT_DIM)
+        self.badge_posture.set(" - ", "no face detected",
                                level=0.0, color=C.UI_TEXT_DIM)
 
     def _update_status_bar(self, fps: float, faces: List[FaceData]) -> None:
@@ -1783,7 +1783,7 @@ class FaceTrackerApp:
         self.status.set("latency", f"{self._latency_ms:.0f} ms")
         if self.capture:
             aw, ah = self.capture.actual_resolution
-            self.status.set("res", f"{aw}×{ah}")
+            self.status.set("res", f"{aw}x{ah}")
         if faces:
             self.status.set("landmarks", f"{len(faces[0].landmarks_px)} pts")
         else:
@@ -1791,10 +1791,10 @@ class FaceTrackerApp:
         self.diag_table.set("Backend", self.tracker.backend)
         if self.capture:
             self.diag_table.set("Resolution",
-                                f"{self.capture.actual_resolution[0]}×{self.capture.actual_resolution[1]}")
+                                f"{self.capture.actual_resolution[0]}x{self.capture.actual_resolution[1]}")
             if self.frame_for_display is not None:
                 self.diag_table.set("Detected res",
-                                    f"{self.frame_for_display.shape[1]}×{self.frame_for_display.shape[0]}")
+                                    f"{self.frame_for_display.shape[1]}x{self.frame_for_display.shape[0]}")
         self.diag_table.set("Latency", f"{self._latency_ms:.1f} ms")
         self.diag_table.set("Landmarks",
                             f"{len(faces[0].landmarks_px) if faces else 0}")

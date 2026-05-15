@@ -620,7 +620,7 @@ class PoseDial(ctk.CTkFrame):
                            bg=C.UI_SURFACE, highlightthickness=0)
             cv.pack()
             txt = ctk.CTkLabel(
-                cont, text=f"{name}\n0°",
+                cont, text=f"{name}\n0",
                 text_color=C.UI_TEXT,
                 font=_font(10, mono=True),
             )
@@ -657,7 +657,7 @@ class PoseDial(ctk.CTkFrame):
                            capstyle="round")
             cv.create_oval(cx - 3, cy - 3, cx + 3, cy + 3,
                            fill=color, outline="")
-            txt.configure(text=f"{name}\n{v:+.0f}°")
+            txt.configure(text=f"{name}\n{v:+.0f}")
 
 
 class ShapeProbabilityList(ctk.CTkFrame):
@@ -916,7 +916,7 @@ class StatusStrip(ctk.CTkFrame):
 
     def _add(self, container, key: str, text: str, *, accent: bool = False) -> None:
         if self._cells:
-            sep = ctk.CTkLabel(container, text="│",
+            sep = ctk.CTkLabel(container, text="|",
                                text_color=C.UI_TEXT_FAINT, font=_font(11),
                                )
             sep.pack(side="left", padx=8)
@@ -988,7 +988,7 @@ class PerfGraph(ctk.CTkFrame):
         self._cv = tk.Canvas(self, height=height, bg=C.UI_SURFACE,
                              highlightthickness=0, bd=0)
         self._cv.pack(fill="x", expand=True, padx=10, pady=(4, 4))
-        self._lbl = ctk.CTkLabel(self, text="—",
+        self._lbl = ctk.CTkLabel(self, text=" - ",
                                  text_color=C.UI_TEXT_DIM, font=_font(10, mono=True),
                                  )
         self._lbl.pack(anchor="w", padx=12, pady=(0, 8))
@@ -1025,7 +1025,7 @@ class PerfGraph(ctk.CTkFrame):
                 c.create_line(*pts, fill=C.UI_BAD, width=1, smooth=True)
         avg_fps = sum(self._fps) / max(1, len(self._fps))
         avg_lat = sum(self._latency) / max(1, len(self._latency))
-        self._lbl.configure(text=f"avg fps {avg_fps:5.1f}   ·   avg latency {avg_lat:4.1f} ms")
+        self._lbl.configure(text=f"avg fps {avg_fps:5.1f}   -   avg latency {avg_lat:4.1f} ms")
 
 
 class DataTable(ctk.CTkFrame):
@@ -1043,7 +1043,7 @@ class DataTable(ctk.CTkFrame):
             ctk.CTkLabel(row, text=r, anchor="w",
                          text_color=C.UI_TEXT_MID, font=_font(11, mono=True),
                          ).grid(row=0, column=0, sticky="w")
-            val = ctk.CTkLabel(row, text="—", anchor="e",
+            val = ctk.CTkLabel(row, text=" - ", anchor="e",
                                text_color=C.UI_ACCENT_HI,
                                font=_font(11, bold=True, mono=True),
                                )
@@ -1161,7 +1161,7 @@ class StatusBadge(ctk.CTkFrame):
         ctk.CTkLabel(self, text=title,
                      text_color=C.UI_TEXT_DIM, font=_font(10, bold=True),
                      ).pack(anchor="w", padx=12, pady=(8, 0))
-        self._value = ctk.CTkLabel(self, text="—",
+        self._value = ctk.CTkLabel(self, text=" - ",
                                    text_color=C.UI_ACCENT_HI,
                                    font=ctk.CTkFont(family=C.FONT_SANS,
                                                     size=18, weight="bold"),

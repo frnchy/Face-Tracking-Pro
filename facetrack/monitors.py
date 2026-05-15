@@ -83,23 +83,23 @@ class PostureMonitor:
     def update(self, distance_cm: float, pitch_deg: float) -> None:
         if distance_cm <= 0:
             self.state = "unknown"
-            self.detail = "—"
+            self.detail = " - "
             self._hunched_since = None
             return
         if distance_cm < 35:
             self.state = "too close"
-            self.detail = f"{distance_cm:.0f}cm  ·  lean back"
+            self.detail = f"{distance_cm:.0f}cm  -  lean back"
         elif distance_cm > 90:
             self.state = "too far"
-            self.detail = f"{distance_cm:.0f}cm  ·  come closer"
+            self.detail = f"{distance_cm:.0f}cm  -  come closer"
         elif pitch_deg < -22:
             self.state = "hunched"
-            self.detail = f"head down {pitch_deg:.0f}°  ·  sit up"
+            self.detail = f"head down {pitch_deg:.0f}  -  sit up"
             if self._hunched_since is None:
                 self._hunched_since = time.time()
         else:
             self.state = "ok"
-            self.detail = f"{distance_cm:.0f}cm  ·  posture ok"
+            self.detail = f"{distance_cm:.0f}cm  -  posture ok"
             self._hunched_since = None
 
     def should_warn(self, cooldown_s: float = 30.0) -> bool:

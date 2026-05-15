@@ -16,8 +16,8 @@ class CameraInfo:
 
     @property
     def label(self) -> str:
-        res = f"{self.width}×{self.height}" if self.width > 0 else "?"
-        return f"{self.name}  ·  {res}"
+        res = f"{self.width}x{self.height}" if self.width > 0 else "?"
+        return f"{self.name}  -  {res}"
 
 
 def _list_dshow_names() -> List[str]:
